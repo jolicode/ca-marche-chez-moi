@@ -151,11 +151,14 @@
 				</section>
 
 				<section>
-					<h2 class="center">Production</h2>
-					<div class="spacer"></div>
 					<p>Quels sont tes environnements ?</p>
-					<div class="center"><img src="images/server.png" class="simple inline"/></div>
-					<br /><br /><br />WAT?
+					<div class="center fragment">
+						<img src="images/server.png" class="simple inline"/>
+						1 Production <span class="fragment">Et c'est tout.</span>
+					</div>
+					<div class="fragment right">
+						<img src="images/wat.jpg" />
+					</div>
 				</section>
 
 				<section>
@@ -200,11 +203,11 @@
 
 
 				<section>
-					<h1 class="center">Livraisons</h1>
+					<h1 class="center">Livraison</h1>
 				</section>
 
 				<section>
-					<h2 class="center">Livraisons</h2>
+					<h2 class="center">Livraison</h2>
 					<div class="spacer"></div>
 					<p>Comment est-ce que tu livre ?</p>
 					<ul>
@@ -216,7 +219,7 @@
 				</section>
 
 				<section>
-					<h2 class="center">Livraisons</h2>
+					<h2 class="center">Livraison</h2>
 					<div class="spacer"></div>
 					<p>Cycle de livraison le plus court possible</p>
 					<ul>
@@ -227,9 +230,9 @@
 				</section>
 
 				<section>
-					<h2 class="center">Livraisons</h2>
+					<h2 class="center">Livraison</h2>
 					<div class="spacer"></div>
-					<p>A la main, avec de la documentation</p>
+					<h3>A la main, avec de la documentation</h3>
 					<ul>
 						<li>Simple à faire</li>
 						<li>Pas normalisé</li>
@@ -239,9 +242,9 @@
 				</section>
 
 				<section>
-					<h2 class="center">Livraisons</h2>
+					<h2 class="center">Livraison</h2>
 					<div class="spacer"></div>
-					<p>Scripts maison</p>
+					<h3>Scripts maison</h3>
 					<ul>
 						<li>Automatisation</li>
 						<li>Assez simple</li>
@@ -249,72 +252,135 @@
 				</section>
 
 				<section>
-					<h2 class="center">Livraisons</h2>
+					<h2 class="center">Livraison</h2>
 					<div class="spacer"></div>
-					<p>Capistrano</p>
+					<h3>Capistrano</h3>
 					<ul>
+						<li>Ruby / Open-Source</li>
+						<li>Nombreuses tâches disponibles et possibilité de surcharge</li>
+						<li>Capifony : Surcharge pour les projets SF/SF2</li>
+						<li>Murder : livraison par torrent</li>
 					</ul>
 				</section>
 
 				<section>
-					<h2 class="center">Livraisons</h2>
+					<h2 class="center">Livraison</h2>
 					<div class="spacer"></div>
-					<p>Fabric</p>
+					<h3>Capistrano</h3>
+					<p>Exemple de config -- @TODO</p>
+					<pre><code contenteditable># Port
+set :port, 9999
+# App ?
+set :application, "project_name"
+
+# Where ?
+set :deploy_to, "/var/www/#{application}"
+
+# Which server ?
+role :app, "localhost"
+role :web, "localhost"
+role :db, "localhost", :primary => true
+
+# Who ?
+set :user, "myUs3r"
+set :password, "p4ssw0rd"
+
+# More config
+set :keep_releases, 3
+ssh_options[:forward_agent] = true
+
+# Path to php executable
+set :php, "/usr/bin/php"
+
+# Symfony application name (used for migrations)
+set :sf_app, "front"
+# Symfony web directory (www, web, public_html, ...)
+set :sf_webdir, "www"
+					</code></pre>
+				</section>
+
+				<section>
+					<h2 class="center">Livraison</h2>
+					<div class="spacer"></div>
+					<h3>Fabric</h3>
 					<ul>
+						<li>Python / Open-Source</li>
+						<li>Makefile amélioré, gestion ssh</li>
+						<li>On doit écrire ses scripts</li>
 					</ul>
 				</section>
 
 				<section>
-					<h2 class="center">Livraisons</h2>
+					<h2 class="center">Livraison</h2>
 					<div class="spacer"></div>
+					<h3>Fabric</h3>
+					<p>Exemple de config -- @TODO</p>
+					<pre><code contenteditable>def deploy():
+    with cd('%s' % env.srvdir):
+        run('git checkout %s' % env.git_branch)
+        run('git pull')
+        run('rm -rf app/cache/*')
+        run('%s composer.phar self-update' % env.php)
+        run('%s composer.phar install' % env.php)
+        run('%s app/console cache:clear --env=prod --no-debug' % env.php)
+        run('%s app/console assets:install --env=prod --no-debug web/' % env.php)
+        run('%s app/console assetic:dump --env=prod --no-debug' % env.php)
+        run('rm -rf app/cache/*')
+					</code></pre>
+				</section>
+
+				<section>
+					<h2 class="center">Livraison</h2>
+					<div class="spacer"></div>
+					<p>Livraison propre et similaire sur tous vos serveurs</p>
+					<p>MAIS</p>
 					<p>Problème de livraison == 90% du temps problème de config !</p>
-					<ul>
+				</section>
 
+				<section>
+					<h2 class="center">Livraison et configuration</h2>
+					<div class="spacer"></div>
+					<h3>Documentation</h3>
+					<ul>
+						<li>Facile. Au début.</li>
+						<li>Aucune normalisation</li>
+						<li>Rarement maintenue</li>
 					</ul>
 				</section>
 
 				<section>
-					<h2 class="center">Livraisons++</h2>
+					<h2 class="center">Livraison et configuration</h2>
 					<div class="spacer"></div>
-					<p>Documentation</p>
+					<h3>Configuration management tools</h3>
 					<ul>
-
+						<li>Déploiement des configurations sur différentes machines</li>
 					</ul>
 				</section>
 
 				<section>
-					<h2 class="center">Livraisons++</h2>
+					<h2 class="center">Livraison et configuration</h2>
 					<div class="spacer"></div>
-					<p>Configuration management tools</p>
+					<h3>Puppet</h3>
 					<ul>
-
+						<li>Ruby</li>
 					</ul>
 				</section>
 
 				<section>
-					<h2 class="center">Livraisons++</h2>
+					<h2 class="center">Livraison et configuration</h2>
 					<div class="spacer"></div>
-					<p>Puppet</p>
+					<h3>CF Engine</h3>
 					<ul>
-
+						<li>C</li>
 					</ul>
 				</section>
 
 				<section>
-					<h2 class="center">Livraisons++</h2>
+					<h2 class="center">Livraison et configuration</h2>
 					<div class="spacer"></div>
-					<p>CF Engine</p>
+					<h3>Chef</h3>
 					<ul>
-
-					</ul>
-				</section>
-
-				<section>
-					<h2 class="center">Livraisons++</h2>
-					<div class="spacer"></div>
-					<p>Chef</p>
-					<ul>
-
+						<li>Ruby</li>
 					</ul>
 				</section>
 
@@ -339,7 +405,7 @@
 				<section>
 					<h2 class="center">Merci !</h2>
 					<div class="spacer"></div>
-					<p>JoliCode, ma soeur et tout</p>
+					<p>JoliCode</p>
 					<ul>
 
 					</ul>
@@ -348,9 +414,11 @@
 				<section>
 					<h2 class="center">Des questions ?</h2>
 					<div class="spacer"></div>
-					<p>URL de la conf / Twitter account</p>
+					<p>http://ternel.net/chezmoicamarche</p>
 					<ul>
-
+						<li>Benjamin Clay - @ternel</li>
+						<li>Joel Wurtz - @joelwurtz</li>
+						<li>JoliCode - @jolicode</li>
 					</ul>
 				</section>
 
