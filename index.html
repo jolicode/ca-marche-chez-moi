@@ -61,7 +61,7 @@
 				</section>
 
 				<section class="center">
-					<h1>Chez moi ça marche !</h1>
+					<h1>Mais ça marche chez moi !</h1>
 					<div class="spacer"></div>
 					<h3>AFUP - PHP Tour Nantes - Edition 2012</h3>
 					<img src="images/logo-phptournantes.png" class="simple" />
@@ -84,7 +84,8 @@
 				<section>
 					<h2 class="center">Sources</h2>
 					<div class="spacer"></div>
-					<p>Comment est-ce que tu gères tes sources ?</p>
+					<p>La question : Comment est-ce que tu gères tes sources ?</p>
+					<p>Les réponses :</p>
 					<ul>
 						<li class="fragment">FTP</li>
 						<li class="fragment">Emails</li>
@@ -207,14 +208,23 @@
 
 				<section>
 					<h2 class="center">Environnements</h2>
-					<p>Quels sont tes environnements ?</p>
-					<div class="spacer"></div>
-					<div class="center">
-						<img src="images/server.png" class="simple inline fragment" />
-						<img src="images/server.png" class="simple inline fragment" />
-						<img src="images/server.png" class="simple inline fragment" />
-						<img src="images/server.png" class="simple inline fragment" />
-						<img src="images/server.png" class="simple inline fragment" />
+					<p>La question : Quels sont tes environnements ?</p>
+					<p>La réponse :</p>
+					<div class="left">
+						<ul>
+							<li class="fragment">Production</li>
+							<li class="fragment">Pré-Production</li>
+							<li class="fragment">Recette</li>
+							<li class="fragment">Dev' distant</li>
+							<li class="fragment">Dev' local</li>
+						</ul>
+					</div>
+					<div class="right fragment">
+						<img src="images/server.png" class="simple inline" width="128" height="128" />
+						<img src="images/server.png" class="simple inline" width="128" height="128" />
+						<img src="images/server.png" class="simple inline" width="128" height="128" />
+						<img src="images/server.png" class="simple inline" width="128" height="128" />
+						<img src="images/server.png" class="simple inline" width="128" height="128" />
 					</div>
 				</section>
 
@@ -264,6 +274,12 @@
 				</section>
 
 				<section>
+					<h2 class="center">Environnements</h2>
+					<div class="spacer"></div>
+					<h3 class="center">Avons-nous besoin d'autant d'environnements ?</h3>
+				</section>
+
+				<section>
 					<h2 class="center">Production</h2>
 					<div class="spacer"></div>
 					<p>Un peu obligatoire, non ?</p>
@@ -273,7 +289,7 @@
 				<section>
 					<h2 class="center">Pre-production</h2>
 					<div class="spacer"></div>
-					<p>Staging, recette, whatever, ...</p>
+					<p>Doit être la réplique quasi-exacte de la production, permet de simuler la production</p>
 					<div class="center">
 						<img src="images/server.png" class="simple inline" />
 						<img src="images/server.png" class="simple inline" />
@@ -283,7 +299,7 @@
 				<section>
 					<h2 class="center">Intégration</h2>
 					<div class="spacer"></div>
-					<p>Ça sert à quelque chose ?</p>
+					<p>Permet de combiner et valider le travail de toute l'équipe de dev</p>
 					<div class="center">
 						<img src="images/server.png" class="simple inline" />
 						<img src="images/server.png" class="simple inline" />
@@ -294,13 +310,20 @@
 				<section>
 					<h2 class="center">Développement</h2>
 					<div class="spacer"></div>
-					<p>Obligatoire... mais plein d'options possibles</p>
+					<p>Obligatoire en local, distant si besoin</p>
 					<div class="center">
 						<img src="images/server.png" class="simple inline" />
 						<img src="images/server.png" class="simple inline" />
 						<img src="images/server.png" class="simple inline" />
 						<img src="images/server.png" class="simple inline" />
 					</div>
+				</section>
+
+				<section>
+					<h2 class="center">Environnements</h2>
+					<div class="spacer"></div>
+					<p>Le nombre d'environnement dépend du projet</p>
+					<p>Il faut les maintenir, sinon ils sont inutiles</p>
 				</section>
 
 
@@ -311,7 +334,8 @@
 				<section>
 					<h2 class="center">Livraison</h2>
 					<div class="spacer"></div>
-					<p>Comment est-ce que tu livre ?</p>
+					<p>La question : Comment est-ce que tu livre ?</p>
+					<p>La réponse :</p>
 					<ul>
 						<li class="fragment">A la main</li>
 					</ul>
@@ -466,11 +490,6 @@ set :sf_webdir, "www"
 					<ul>
 						<li>Ruby</li>
 					</ul>
-				</section>
-
-				<section>
-					<h2 class="center">Livraison et configuration</h2>
-					<div class="spacer"></div>
 					<h3>CF Engine</h3>
 					<ul>
 						<li>C</li>
@@ -483,6 +502,8 @@ set :sf_webdir, "www"
 					<h3>Chef</h3>
 					<ul>
 						<li>Ruby</li>
+						<li>$ gem install knife-solo</li>
+						<li>Cookbook / Roles</li>
 					</ul>
 				</section>
 
@@ -496,22 +517,22 @@ set :sf_webdir, "www"
                         <li class="fragment"><a href="https://github.com/matschaffer/knife-solo">Knife Solo</a></li>
 					</ul>
 				</section>
-				
+
 				<section>
                     <h2 class="center">Chef</h2>
                     <div class="spacer"></div>
                     <p>Une recette défini comment installer un logiciel</p>
                 </section>
-                
+
                 <section>
-                    <h2 class="center">Chef</h2>
+                    <h2 class="center">Chef : Recette</h2>
                     <div class="spacer"></div>
                     <p>Exemple simple</p>
                     <pre><code contenteditable>package "php"</code></pre>
                 </section>
-                
+
                 <section>
-                    <h2 class="center">Chef</h2>
+                    <h2 class="center">Chef : Recette</h2>
                     <div class="spacer"></div>
                     <p>Exemple moins simple</p>
                     <pre><code contenteditable>pkgs = value_for_platform(
@@ -538,15 +559,15 @@ template "#{node['php']['conf_dir']}/php.ini" do
   mode "0644"
 end</code></pre>
                 </section>
-                
+
                 <section>
-                    <h2 class="center">Chef</h2>
+                    <h2 class="center">Chef : Attributs</h2>
                     <div class="spacer"></div>
                     <p>Les attributs sont toutes les valeurs configurables entres nos différents environnements (un chemin, une valeur dans php.ini, etc ...)</p>
                 </section>
-                
+
                 <section>
-                    <h2 class="center">Chef</h2>
+                    <h2 class="center">Chef : Attributs</h2>
                     <div class="spacer"></div>
                     <p>Exemple</p>
                     <pre><code contenteditable>case node["platform_family"]
@@ -565,19 +586,19 @@ default['php']['config']['date.timezone']       = "Europe/Paris"
 default['php']['config']['max_execution_time']  = "-1"
 default['php']['config']['memory_limit']        = "-1"</code></pre>
                 </section>
-                
+
                 <section>
-                    <h2 class="center">Chef</h2>
+                    <h2 class="center">Chef : Templates</h2>
                     <div class="spacer"></div>
                     <p>Un template est un fichier de configuration à mettre en place sur les serveurs</p>
                 </section>
-                
+
                 <section>
-                    <h2 class="center">Chef</h2>
+                    <h2 class="center">Chef : Templates</h2>
                     <div class="spacer"></div>
                     <p>Exemple</p>
                     <pre><code contenteditable>...
-                    
+
 expose_php = On
 
 ;;;;;;;;;;;;;;;;;;;
@@ -590,9 +611,9 @@ memory_limit           = <%= @config['memory_limit'] %>
 
 ...</code></pre>
                 </section>
-                
+
                 <section>
-                    <h2 class="center">Chef</h2>
+                    <h2 class="center">Chef : Templates</h2>
                     <div class="spacer"></div>
                     <p>Exemple</p>
                     <pre><code contenteditable>template "#{node['php']['conf_dir']}/php.ini" do
@@ -602,9 +623,9 @@ memory_limit           = <%= @config['memory_limit'] %>
   mode "0644"
 end</code></pre>
                 </section>
-                
+
                 <section>
-                    <h2 class="center">Chef</h2>
+                    <h2 class="center">Chef : Cookbook</h2>
                     <div class="spacer"></div>
                     <p>Cookbook</p>
                     <ul>
@@ -614,16 +635,16 @@ end</code></pre>
                         <li>...</li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <h2 class="center">Chef</h2>
                     <div class="spacer"></div>
-                    <p>Ne reinventer pas la roue</p>
+                    <p>Ne reinventer pas la roue !</p>
                     <ul>
                         <li><a href="http://community.opscode.com/">Chef community</a></li>
                     </ul>
                 </section>
-                
+
 				<section>
 					<h2 class="center">Pink Sombrero ?</h2>
 					<div class="spacer"></div>
@@ -638,7 +659,7 @@ end</code></pre>
 					<div class="spacer"></div>
 					<p>JoliCode</p>
 					<ul>
-
+						<li></li>
 					</ul>
 				</section>
 
@@ -646,6 +667,7 @@ end</code></pre>
 					<h2 class="center">Des questions ?</h2>
 					<div class="spacer"></div>
 					<p>http://ternel.net/chezmoicamarche</p>
+					<p>http://github.com/jolicode/chezmoicamarche</p>
 					<ul>
 						<li>Benjamin Clay - @ternel</li>
 						<li>Joel Wurtz - @joelwurtz</li>
