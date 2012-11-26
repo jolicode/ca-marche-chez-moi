@@ -453,7 +453,9 @@ set :sf_webdir, "www"
 					<div class="spacer"></div>
 					<h3>Configuration management tools</h3>
 					<ul>
-						<li>Déploiement des configurations sur différentes machines</li>
+						<li class="fragment">Déploiement des configurations sur différentes machines</li>
+                        <li class="fragment">Synchronisation entre tous nos serveurs</li>
+                        <li class="fragment">Normalisation de nos configurations</li>
 					</ul>
 				</section>
 
@@ -487,12 +489,141 @@ set :sf_webdir, "www"
 				<section>
 					<h2 class="center">Chef</h2>
 					<div class="spacer"></div>
-					<p>Exemple</p>
+					<p>Vos premiers pas</p>
 					<ul>
-
+					    <li class="fragment"><a href="http://vagrantup.com/">Vagrant</a></li>
+                        <li class="fragment"><a href="http://wiki.opscode.com/display/chef/Chef+Solo">Chef solo</a> (Installé de base sur la plupart des box vagrant)</li>
+                        <li class="fragment"><a href="https://github.com/matschaffer/knife-solo">Knife Solo</a></li>
 					</ul>
 				</section>
+				
+				<section>
+                    <h2 class="center">Chef</h2>
+                    <div class="spacer"></div>
+                    <p>Une recette défini comment installer un logiciel</p>
+                </section>
+                
+                <section>
+                    <h2 class="center">Chef</h2>
+                    <div class="spacer"></div>
+                    <p>Exemple simple</p>
+                    <pre><code contenteditable>package "php"</code></pre>
+                </section>
+                
+                <section>
+                    <h2 class="center">Chef</h2>
+                    <div class="spacer"></div>
+                    <p>Exemple moins simple</p>
+                    <pre><code contenteditable>pkgs = value_for_platform(
+  %w(centos redhat scientific fedora) => {
+    %w(5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8) => %w(php53 php53-devel php53-cli),
+    'default' => %w(php php-devel php-cli)
+  },
+  [ "debian", "ubuntu" ] => {
+    "default" => %w{ php5-cgi php5 php5-dev php5-cli}
+  },
+  "default" => %w{ php5-cgi php5 php5-dev php5-cli}
+)
 
+pkgs.each do |pkg|
+  package pkg do
+    action :install
+  end
+end
+
+template "#{node['php']['conf_dir']}/php.ini" do
+  source "php.ini.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+end</code></pre>
+                </section>
+                
+                <section>
+                    <h2 class="center">Chef</h2>
+                    <div class="spacer"></div>
+                    <p>Les attributs sont toutes les valeurs configurables entres nos différents environnements (un chemin, une valeur dans php.ini, etc ...)</p>
+                </section>
+                
+                <section>
+                    <h2 class="center">Chef</h2>
+                    <div class="spacer"></div>
+                    <p>Exemple</p>
+                    <pre><code contenteditable>case node["platform_family"]
+when "rhel", "centos"
+  default['php']['conf_dir']      = '/etc'
+  default['php']['ext_conf_dir']  = '/etc/php.d'
+when "debian", "ubuntu"
+  default['php']['conf_dir']      = '/etc/php5/cli'
+  default['php']['ext_conf_dir']  = '/etc/php5/conf.d'
+else
+  default['php']['conf_dir']      = '/etc/php5/cli'
+  default['php']['ext_conf_dir']  = '/etc/php5/conf.d'
+end
+
+default['php']['config']['date.timezone']       = "Europe/Paris"
+default['php']['config']['max_execution_time']  = "-1"
+default['php']['config']['memory_limit']        = "-1"</code></pre>
+                </section>
+                
+                <section>
+                    <h2 class="center">Chef</h2>
+                    <div class="spacer"></div>
+                    <p>Un template est un fichier de configuration à mettre en place sur les serveurs</p>
+                </section>
+                
+                <section>
+                    <h2 class="center">Chef</h2>
+                    <div class="spacer"></div>
+                    <p>Exemple</p>
+                    <pre><code contenteditable>...
+                    
+expose_php = On
+
+;;;;;;;;;;;;;;;;;;;
+; Resource Limits ;
+;;;;;;;;;;;;;;;;;;;
+
+max_execution_time     = <%= @config['max_execution_time'] %>
+max_input_time         = 60
+memory_limit           = <%= @config['memory_limit'] %>
+
+...</code></pre>
+                </section>
+                
+                <section>
+                    <h2 class="center">Chef</h2>
+                    <div class="spacer"></div>
+                    <p>Exemple</p>
+                    <pre><code contenteditable>template "#{node['php']['conf_dir']}/php.ini" do
+  source "php.ini.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+end</code></pre>
+                </section>
+                
+                <section>
+                    <h2 class="center">Chef</h2>
+                    <div class="spacer"></div>
+                    <p>Cookbook</p>
+                    <ul>
+                        <li>Recettes</li>
+                        <li>Attributs</li>
+                        <li>Templates</li>
+                        <li>...</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2 class="center">Chef</h2>
+                    <div class="spacer"></div>
+                    <p>Ne reinventer pas la roue</p>
+                    <ul>
+                        <li><a href="http://community.opscode.com/">Chef community</a></li>
+                    </ul>
+                </section>
+                
 				<section>
 					<h2 class="center">Pink Sombrero ?</h2>
 					<div class="spacer"></div>
