@@ -112,7 +112,12 @@
 					<span class="fragment"><img src="images/logo-git.png" class="logo"/></span>
 				</section>
 
-
+				<section class="center">
+					<h2 class="center">Sources : Outils</h2>
+					<div class="spacer"></div>
+					<p></p>
+					<div class="center"><img src="images/github.jpg" class="simple "/>&nbsp;&nbsp;&nbsp;<img src="images/gitlab.png" class="simple "/></div>
+				</section>
 
 				<section class="center">
 					<h2 class="center">Sources : Outils</h2>
@@ -280,26 +285,28 @@
 				</section>
 
 				<section>
-					<h2 class="center">Production</h2>
+					<h2 class="center">Développement</h2>
 					<div class="spacer"></div>
-					<p>Un peu obligatoire, non ?</p>
-					<div class="center"><img src="images/server.png" class="simple inline"/></div>
+					<h3>Obligatoire en local, distant si besoin</h3>
+					<div class="center">
+						<img src="images/server.png" class="simple inline" />
+					</div>
+				</section>
+
+				<section>
+					<h2 class="center">Recette</h2>
+					<div class="spacer"></div>
+					<h3>Permet de combiner et valider le travail de toute l'équipe de dev</h3>
+					<div class="center">
+						<img src="images/server.png" class="simple inline" />
+						<img src="images/server.png" class="simple inline" />
+					</div>
 				</section>
 
 				<section>
 					<h2 class="center">Pre-production</h2>
 					<div class="spacer"></div>
-					<p>Doit être la réplique quasi-exacte de la production, permet de simuler la production</p>
-					<div class="center">
-						<img src="images/server.png" class="simple inline" />
-						<img src="images/server.png" class="simple inline" />
-					</div>
-				</section>
-
-				<section>
-					<h2 class="center">Intégration</h2>
-					<div class="spacer"></div>
-					<p>Permet de combiner et valider le travail de toute l'équipe de dev</p>
+					<h3>Doit être la réplique quasi-exacte de la production, permet de simuler la production</h3>
 					<div class="center">
 						<img src="images/server.png" class="simple inline" />
 						<img src="images/server.png" class="simple inline" />
@@ -308,9 +315,9 @@
 				</section>
 
 				<section>
-					<h2 class="center">Développement</h2>
+					<h2 class="center">Production</h2>
 					<div class="spacer"></div>
-					<p>Obligatoire en local, distant si besoin</p>
+					<h3>Un peu obligatoire, non ?</h3>
 					<div class="center">
 						<img src="images/server.png" class="simple inline" />
 						<img src="images/server.png" class="simple inline" />
@@ -322,10 +329,9 @@
 				<section>
 					<h2 class="center">Environnements</h2>
 					<div class="spacer"></div>
-					<p>Le nombre d'environnement dépend du projet</p>
-					<p>Il faut les maintenir, sinon ils sont inutiles</p>
+					<h3>Le nombre d'environnement dépend du projet</h3>
+					<h3>Il faut les maintenir, sinon ils sont inutiles</h3>
 				</section>
-
 
 				<section>
 					<h1 class="center">Livraison</h1>
@@ -372,6 +378,7 @@
 					<ul>
 						<li>Automatisation</li>
 						<li>Assez simple</li>
+						<li>Assez limité</li>
 					</ul>
 				</section>
 
@@ -391,35 +398,20 @@
 					<h2 class="center">Livraison</h2>
 					<div class="spacer"></div>
 					<h3>Capistrano</h3>
-					<p>Exemple de config -- @TODO</p>
+					<p>Exemple</p>
 					<pre><code contenteditable># Port
-set :port, 9999
-# App ?
-set :application, "project_name"
-
-# Where ?
-set :deploy_to, "/var/www/#{application}"
-
-# Which server ?
-role :app, "localhost"
-role :web, "localhost"
-role :db, "localhost", :primary => true
-
-# Who ?
-set :user, "myUs3r"
-set :password, "p4ssw0rd"
-
-# More config
-set :keep_releases, 3
-ssh_options[:forward_agent] = true
-
-# Path to php executable
-set :php, "/usr/bin/php"
-
-# Symfony application name (used for migrations)
-set :sf_app, "front"
-# Symfony web directory (www, web, public_html, ...)
-set :sf_webdir, "www"
+`-- /var/www/my-app.com
+|-- current → /var/www/my-app.com/releases/20100512131539
+|-- releases
+|   `-- 20100512131539
+|   `-- 20100509150741
+|   `-- 20100509145325
+`-- shared
+   |-- web
+   |    `-- uploads
+   |-- log
+   `-- config
+       `-- databases.yml
 					</code></pre>
 				</section>
 
@@ -443,13 +435,12 @@ set :sf_webdir, "www"
     with cd('%s' % env.srvdir):
         run('git checkout %s' % env.git_branch)
         run('git pull')
-        run('rm -rf app/cache/*')
         run('%s composer.phar self-update' % env.php)
         run('%s composer.phar install' % env.php)
         run('%s app/console cache:clear --env=prod --no-debug' % env.php)
-        run('%s app/console assets:install --env=prod --no-debug web/' % env.php)
-        run('%s app/console assetic:dump --env=prod --no-debug' % env.php)
-        run('rm -rf app/cache/*')
+        local('app/console assets:install --symlink --env=prod --no-debug web/')
+        local('app/console assetic:dump --env=prod --no-debug')
+        put('web/css/compiled/*', 'web/css/compiled/')
 					</code></pre>
 				</section>
 
@@ -503,7 +494,7 @@ set :sf_webdir, "www"
 					<ul>
 						<li>Ruby</li>
 						<li>$ gem install knife-solo</li>
-						<li>Cookbook / Roles</li>
+						<li>Virtual box / Vagrant / Knife / Chef</li>
 					</ul>
 				</section>
 
@@ -521,20 +512,14 @@ set :sf_webdir, "www"
 				<section>
                     <h2 class="center">Chef</h2>
                     <div class="spacer"></div>
-                    <p>Une recette défini comment installer un logiciel</p>
-                </section>
-
-                <section>
-                    <h2 class="center">Chef : Recette</h2>
-                    <div class="spacer"></div>
-                    <p>Exemple simple</p>
+                    <h3>Une recette défini comment installer un logiciel</h3>
                     <pre><code contenteditable>package "php"</code></pre>
                 </section>
 
                 <section>
                     <h2 class="center">Chef : Recette</h2>
                     <div class="spacer"></div>
-                    <p>Exemple moins simple</p>
+                    <p>Exemple</p>
                     <pre><code contenteditable>pkgs = value_for_platform(
   %w(centos redhat scientific fedora) => {
     %w(5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8) => %w(php53 php53-devel php53-cli),
@@ -636,6 +621,27 @@ end</code></pre>
                     </ul>
                 </section>
 
+
+                <section>
+                	<h2>Vagrantfile</h2>
+                	<div class="spacer"></div>
+                	<pre><code contenteditable># -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+  config.vm.box = "ubuntu"
+  config.vm.network :hostonly, "192.168.33.100"
+  config.vm.forward_port 80, 8080
+
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = "/Users/ternel/Sites/tools/cookbook-test/cookbooks"
+    chef.roles_path = "/Users/ternel/Sites/tools/cookbook-test/roles"
+    chef.data_bags_path = "/Users/ternel/Sites/tools/cookbook-test/data_bags"
+    chef.add_recipe "chef-php::php"
+  end
+end</code></pre>
+               	</section>
+
                 <section>
                     <h2 class="center">Chef</h2>
                     <div class="spacer"></div>
@@ -646,21 +652,7 @@ end</code></pre>
                 </section>
 
 				<section>
-					<h2 class="center">Pink Sombrero ?</h2>
-					<div class="spacer"></div>
-					<p>A mettre ou non ? à mettre au début ?</p>
-					<ul>
-
-					</ul>
-				</section>
-
-				<section>
 					<h2 class="center">Merci !</h2>
-					<div class="spacer"></div>
-					<p>JoliCode</p>
-					<ul>
-						<li></li>
-					</ul>
 				</section>
 
 				<section>
