@@ -435,7 +435,7 @@
 					<h2 class="center">Livraison</h2>
 					<div class="spacer"></div>
 					<h3>Fabric</h3>
-					<p>Exemple de config -- @TODO</p>
+					<p>Exemple de config</p>
 					<pre><code contenteditable>def deploy():
     with cd('%s' % env.srvdir):
         run('git checkout %s' % env.git_branch)
@@ -513,6 +513,41 @@
                         <li class="fragment"><a href="https://github.com/matschaffer/knife-solo">Knife Solo</a></li>
 					</ul>
 				</section>
+				
+				<section>
+                    <h2>Vagrantfile</h2>
+                    <div class="spacer"></div>
+                    <pre><code contenteditable># -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+  config.vm.box = "ubuntu"
+  config.vm.network :hostonly, "192.168.33.100"
+  config.vm.forward_port 80, 8080
+
+  config.vm.provision :chef_solo do |chef|
+    #Chemin vers les cookbooks
+    chef.cookbooks_path = "/Users/ternel/Sites/tools/cookbook-test/cookbooks"
+    #Chemin vers les rôles
+    chef.roles_path = "/Users/ternel/Sites/tools/cookbook-test/roles"
+    #Checmin vers les data bags
+    chef.data_bags_path = "/Users/ternel/Sites/tools/cookbook-test/data_bags"
+    chef.add_recipe "chef-php::php"
+  end
+end</code></pre>
+                </section>
+
+                <section>
+                    <h2 class="center">Chef Cookbook</h2>
+                    <div class="spacer"></div>
+                    <p>Cookbook</p>
+                    <ul>
+                        <li>Recettes</li>
+                        <li>Attributs</li>
+                        <li>Templates</li>
+                        <li>...</li>
+                    </ul>
+                </section>
 
 				<section>
                     <h2 class="center">Chef</h2>
@@ -549,7 +584,32 @@ template "#{node['php']['conf_dir']}/php.ini" do
   mode "0644"
 end</code></pre>
                 </section>
+                
+                <section>
+                    <h2 class="center">Chef : Templates</h2>
+                    <div class="spacer"></div>
+                    <p>Un template est un fichier de configuration à mettre en place sur les serveurs</p>
+                </section>
 
+                <section>
+                    <h2 class="center">Chef : Templates</h2>
+                    <div class="spacer"></div>
+                    <p>Exemple</p>
+                    <pre><code contenteditable>...
+
+expose_php = On
+
+;;;;;;;;;;;;;;;;;;;
+; Resource Limits ;
+;;;;;;;;;;;;;;;;;;;
+
+max_execution_time     = <%= @config['max_execution_time'] %>
+max_input_time         = 60
+memory_limit           = <%= @config['memory_limit'] %>
+
+...</code></pre>
+                </section>
+                
                 <section>
                     <h2 class="center">Chef : Attributs</h2>
                     <div class="spacer"></div>
@@ -576,83 +636,39 @@ default['php']['config']['date.timezone']       = "Europe/Paris"
 default['php']['config']['max_execution_time']  = "-1"
 default['php']['config']['memory_limit']        = "-1"</code></pre>
                 </section>
-
+                
                 <section>
-                    <h2 class="center">Chef : Templates</h2>
+                    <h2 class="center">Chef</h2>
                     <div class="spacer"></div>
-                    <p>Un template est un fichier de configuration à mettre en place sur les serveurs</p>
-                </section>
-
-                <section>
-                    <h2 class="center">Chef : Templates</h2>
-                    <div class="spacer"></div>
-                    <p>Exemple</p>
-                    <pre><code contenteditable>...
-
-expose_php = On
-
-;;;;;;;;;;;;;;;;;;;
-; Resource Limits ;
-;;;;;;;;;;;;;;;;;;;
-
-max_execution_time     = <%= @config['max_execution_time'] %>
-max_input_time         = 60
-memory_limit           = <%= @config['memory_limit'] %>
-
-...</code></pre>
-                </section>
-
-                <section>
-                    <h2 class="center">Chef : Templates</h2>
-                    <div class="spacer"></div>
-                    <p>Exemple</p>
-                    <pre><code contenteditable>template "#{node['php']['conf_dir']}/php.ini" do
-  source "php.ini.erb"
-  owner "root"
-  group "root"
-  mode "0644"
-end</code></pre>
-                </section>
-
-                <section>
-                    <h2 class="center">Chef : Cookbook</h2>
-                    <div class="spacer"></div>
-                    <p>Cookbook</p>
+                    <p>Bien d'autres notions ... :</p>
                     <ul>
-                        <li>Recettes</li>
-                        <li>Attributs</li>
-                        <li>Templates</li>
-                        <li>...</li>
+                        <li>Rôles</li>
+                        <li>Data bags</li>
+                        <li>Défintions</li>
+                        <li>.....</li>
+                        <li><a href="http://wiki.opscode.com/display/chef/Home">RTFM</a></li>
                     </ul>
                 </section>
-
-
-                <section>
-                	<h2>Vagrantfile</h2>
-                	<div class="spacer"></div>
-                	<pre><code contenteditable># -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-Vagrant::Config.run do |config|
-  config.vm.box = "ubuntu"
-  config.vm.network :hostonly, "192.168.33.100"
-  config.vm.forward_port 80, 8080
-
-  config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "/Users/ternel/Sites/tools/cookbook-test/cookbooks"
-    chef.roles_path = "/Users/ternel/Sites/tools/cookbook-test/roles"
-    chef.data_bags_path = "/Users/ternel/Sites/tools/cookbook-test/data_bags"
-    chef.add_recipe "chef-php::php"
-  end
-end</code></pre>
-               	</section>
 
                 <section>
                     <h2 class="center">Chef</h2>
                     <div class="spacer"></div>
-                    <p>Ne reinventer pas la roue !</p>
+                    <p>Allez y et ne reinventer pas la roue !</p>
                     <ul>
+                        <li>Un peu complexe, mais tellement bien</li>
                         <li><a href="http://community.opscode.com/">Chef community</a></li>
+                        <li>Cookbooks sur github</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2 class="center">Conclusion</h2>
+                    <div class="spacer"></div>
+                    <ul>
+                        <li>Utilisez un gestionnaire de version et de suivi de projet<li>
+                        <li>Organisez vos développements</li>
+                        <li>Automatisez vos livraisons et jouez les souvent</li>
+                        <li>Automatisez et normalisez la configuration de vos serveurs</li>                      
                     </ul>
                 </section>
 
