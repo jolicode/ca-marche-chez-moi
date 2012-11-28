@@ -78,6 +78,12 @@
 				</section>
 
 				<section class="center">
+					<h2 class="center">#Fail</h2>
+
+					<img class="fragment simple" src="images/leclerc.png" />
+				</section>
+
+				<section class="center">
 					<h1 class="center">Sources</h1>
 				</section>
 
@@ -88,8 +94,8 @@
 					<p>Les réponses :</p>
 					<ul>
 						<li class="fragment">FTP</li>
-						<li class="fragment">Emails</li>
 						<li class="fragment">SCP</li>
+						<li class="fragment">Emails</li>
 					</ul>
 
 					<div class="fragment right">
@@ -125,7 +131,7 @@
 					<p>Code review :</p>
 					<div class="center"><img src="images/code-review.png" class="simple "/></div>
 				</section>
-				
+
 				<section class="center">
                     <h2 class="center">Les gestionnaires de sources c'est bien !</h2>
                     <p>Savoir organiser son projet avec c'est mieux !</p>
@@ -137,13 +143,6 @@
                     <h3>One branch to rule them all!</h3>
                     <div class="spacer"></div>
 					<div class="center"><img src="images/branche-1.gif" class="simple" /></div>
-				</section>
-
-				<section>
-					<h2 class="center">Branche !</h2>
-					<div class="spacer"></div>
-                    <h3>One branch to rule them all!</h3>
-                    <div class="spacer"></div>
 					<ul>
 						<li class="fragment">Petits projets</li>
 						<li class="fragment" style="color: #17FF2E">Simple, rapide</li>
@@ -158,13 +157,6 @@
                     <h3>Une branche de dev / Une branche de release</h3>
                     <div class="spacer"></div>
 					<div class="center"><img src="images/branche-2.gif" class="simple" /></div>
-				</section>
-
-				<section>
-					<h2 class="center">Branches !</h2>
-					<div class="spacer"></div>
-                    <h3>Une branche de dev / Une branche de release</h3>
-                    <div class="spacer"></div>
 					<ul>
 						<li class="fragment">Moyens projets</li>
 						<li class="fragment" style="color: #17FF2E">Simple, moins rapide</li>
@@ -179,13 +171,6 @@
 					<h3>n-branches</h3>
                     <div class="spacer"></div>
 					<div class="center"><img src="images/branche-3.gif" class="simple" /></div>
-				</section>
-
-				<section>
-					<h2 class="center">Branchesssssss !</h2>
-					<div class="spacer"></div>
-					<h3>n-branches</h3>
-                    <div class="spacer"></div>
 					<ul>
 						<li class="fragment">Gros projets</li>
 						<li class="fragment" style="color: #17FF2E">Quickfix</li>
@@ -197,7 +182,7 @@
 				<section>
 					<h2 class="center">Branchesssssss !</h2>
 					<div class="spacer"></div>
-					<h3>n-branches</h3>
+					<h3>Un peu d'organisation !</h3>
                     <div class="spacer"></div>
                     <div class="center"><img src="images/git-fail.png" class="simple" /></div>
 				</section>
@@ -482,14 +467,9 @@
 				<section>
 					<h2 class="center">Livraison et configuration</h2>
 					<div class="spacer"></div>
-					<h3>Puppet</h3>
-					<ul>
-						<li>Ruby</li>
-					</ul>
-					<h3>CF Engine</h3>
-					<ul>
-						<li>C</li>
-					</ul>
+					<h3>Puppet - Ruby</h3>
+					<h3>CF Engine - C</h3>
+					<h3>Chef - Ruby</h3>
 				</section>
 
 				<section>
@@ -513,7 +493,7 @@
                         <li class="fragment"><a href="https://github.com/matschaffer/knife-solo">Knife Solo</a></li>
 					</ul>
 				</section>
-				
+
 				<section>
                     <h2>Vagrantfile</h2>
                     <div class="spacer"></div>
@@ -584,7 +564,7 @@ template "#{node['php']['conf_dir']}/php.ini" do
   mode "0644"
 end</code></pre>
                 </section>
-                
+
                 <section>
                     <h2 class="center">Chef : Templates</h2>
                     <div class="spacer"></div>
@@ -609,7 +589,7 @@ memory_limit           = <%= @config['memory_limit'] %>
 
 ...</code></pre>
                 </section>
-                
+
                 <section>
                     <h2 class="center">Chef : Attributs</h2>
                     <div class="spacer"></div>
@@ -636,7 +616,7 @@ default['php']['config']['date.timezone']       = "Europe/Paris"
 default['php']['config']['max_execution_time']  = "-1"
 default['php']['config']['memory_limit']        = "-1"</code></pre>
                 </section>
-                
+
                 <section>
                     <h2 class="center">Chef</h2>
                     <div class="spacer"></div>
@@ -660,7 +640,7 @@ default['php']['config']['memory_limit']        = "-1"</code></pre>
                         <li>Cookbooks sur github</li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <h2 class="center">Conclusion</h2>
                     <div class="spacer"></div>
@@ -668,7 +648,7 @@ default['php']['config']['memory_limit']        = "-1"</code></pre>
                         <li>Utilisez un gestionnaire de version et de suivi de projet<li>
                         <li>Organisez vos développements</li>
                         <li>Automatisez vos livraisons et jouez les souvent</li>
-                        <li>Automatisez et normalisez la configuration de vos serveurs</li>                      
+                        <li>Automatisez et normalisez la configuration de vos serveurs</li>
                     </ul>
                 </section>
 
