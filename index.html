@@ -6,8 +6,8 @@
 
 		<title>Chez moi ça marche !</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="Mais ça marche chez moi !">
+		<meta name="author" content="Team Jolicode">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -74,13 +74,13 @@
 				<section class="center">
 					<h2 class="center">#Fail</h2>
 
-					<img class="fragment simple" src="images/fnac-prout.png" />
+					<img class="simple" src="images/fnac-prout.png" />
 				</section>
 
 				<section class="center">
 					<h2 class="center">#Fail</h2>
 
-					<img class="fragment simple" src="images/leclerc.png" />
+					<img class="simple" src="images/leclerc.png" />
 				</section>
 
 				<section class="center">
@@ -107,15 +107,15 @@
 					<h2 class="center">Sources : Outils</h2>
 					<div class="spacer"></div>
 					<p>Bien :</p>
-					<span class="fragment"><img src="images/logo-subversion.png" class="logo"/></span>
+					<span><img src="images/logo-subversion.png" class="logo"/></span>
 				</section>
 
 				<section class="center">
 					<h2 class="center">Sources : Outils</h2>
 					<div class="spacer"></div>
 					<p>Mieux :</p>
-					<span class="fragment"><img src="images/logo-mercurial.png" class="logo"/></span>
-					<span class="fragment"><img src="images/logo-git.png" class="logo"/></span>
+					<span><img src="images/logo-mercurial.png" class="logo"/></span>
+					<span><img src="images/logo-git.png" class="logo"/></span>
 				</section>
 
 				<section class="center">
@@ -144,10 +144,10 @@
                     <div class="spacer"></div>
 					<div class="center"><img src="images/branche-1.gif" class="simple" /></div>
 					<ul>
-						<li class="fragment">Petits projets</li>
-						<li class="fragment" style="color: #17FF2E">Simple, rapide</li>
-						<li class="fragment" style="color: #FF2C2D">Quickfix impossible</li>
-						<li class="fragment" style="color: #FF2C2D">Aucune séparation des devs</li>
+						<li>Petits projets</li>
+						<li style="color: #17FF2E">Simple, rapide</li>
+						<li style="color: #FF2C2D">Quickfix impossible</li>
+						<li style="color: #FF2C2D">Aucune séparation des devs</li>
 					</ul>
 				</section>
 
@@ -158,10 +158,10 @@
                     <div class="spacer"></div>
 					<div class="center"><img src="images/branche-2.gif" class="simple" /></div>
 					<ul>
-						<li class="fragment">Moyens projets</li>
-						<li class="fragment" style="color: #17FF2E">Simple, moins rapide</li>
-						<li class="fragment" style="color: #17FF2E">Quickfix</li>
-						<li class="fragment" style="color: #FF2C2D">Aucune séparation des devs</li>
+						<li>Moyens projets</li>
+						<li style="color: #17FF2E">Simple, moins rapide</li>
+						<li style="color: #17FF2E">Quickfix</li>
+						<li style="color: #FF2C2D">Aucune séparation des devs</li>
 					</ul>
 				</section>
 
@@ -172,10 +172,10 @@
                     <div class="spacer"></div>
 					<div class="center"><img src="images/branche-3.gif" class="simple" /></div>
 					<ul>
-						<li class="fragment">Gros projets</li>
-						<li class="fragment" style="color: #17FF2E">Quickfix</li>
-						<li class="fragment" style="color: #17FF2E">Séparation des devs</li>
-						<li class="fragment" style="color: #FF2C2D">Demande une trés bonne organisation</li>
+						<li>Gros projets</li>
+						<li style="color: #17FF2E">Quickfix</li>
+						<li style="color: #17FF2E">Séparation des devs</li>
+						<li style="color: #FF2C2D">Demande une trés bonne organisation</li>
 					</ul>
 				</section>
 
@@ -458,9 +458,9 @@
 					<div class="spacer"></div>
 					<h3>Configuration management tools</h3>
 					<ul>
-						<li class="fragment">Déploiement des configurations sur différentes machines</li>
-                        <li class="fragment">Synchronisation entre tous nos serveurs</li>
-                        <li class="fragment">Normalisation de nos configurations</li>
+						<li>Déploiement des configurations sur différentes machines</li>
+                        <li>Synchronisation entre tous nos serveurs</li>
+                        <li>Normalisation de nos configurations</li>
 					</ul>
 				</section>
 
@@ -471,17 +471,16 @@
 					<h3>CF Engine - C</h3>
 					<h3>Chef - Ruby</h3>
 				</section>
-
+				
 				<section>
-					<h2 class="center">Livraison et configuration</h2>
-					<div class="spacer"></div>
-					<h3>Chef</h3>
-					<ul>
-						<li>Ruby</li>
-						<li>$ gem install knife-solo</li>
-						<li>Virtual box / Vagrant / Knife / Chef</li>
-					</ul>
-				</section>
+                    <h2 class="center">Fonctionnement général</h2>
+                    <div class="spacer"></div>
+                    <ul>
+                        <li class="fragment">Des scripts</li>
+                        <li class="fragment">Un maitre</li>
+                        <li class="fragment">Des esclaves</li>
+                    </ul>
+                </section>
 
 				<section>
 					<h2 class="center">Chef</h2>
@@ -520,13 +519,29 @@ end</code></pre>
                 <section>
                     <h2 class="center">Chef Cookbook</h2>
                     <div class="spacer"></div>
-                    <p>Cookbook</p>
+                    <p>Cookbooks</p>
                     <ul>
                         <li>Recettes</li>
                         <li>Attributs</li>
                         <li>Templates</li>
                         <li>...</li>
                     </ul>
+                </section>
+                
+                <section>
+                    <h2 class="center">Chef Cookbook</h2>
+                    <div class="spacer"></div>
+                    <p>Exemple</p>
+                    <pre><code contenteditable>`-- cookbooks
+    `-- php
+       |-- recipes
+       |    `-- default.rb
+       |-- attributes
+       |    `-- default.rb
+       `-- templates
+           `-- default
+               `-- php.ini.erb
+                    </code></pre>
                 </section>
 
 				<section>
@@ -620,13 +635,12 @@ default['php']['config']['memory_limit']        = "-1"</code></pre>
                 <section>
                     <h2 class="center">Chef</h2>
                     <div class="spacer"></div>
-                    <p>Bien d'autres notions ... :</p>
+                    <p>Bien d'autres notions ...</p>
                     <ul>
                         <li>Rôles</li>
                         <li>Data bags</li>
                         <li>Défintions</li>
-                        <li>.....</li>
-                        <li><a href="http://wiki.opscode.com/display/chef/Home">RTFM</a></li>
+                        <li><a href="http://wiki.opscode.com/display/chef/Home">.....</a></li>
                     </ul>
                 </section>
 
@@ -645,7 +659,7 @@ default['php']['config']['memory_limit']        = "-1"</code></pre>
                     <h2 class="center">Conclusion</h2>
                     <div class="spacer"></div>
                     <ul>
-                        <li>Utilisez un gestionnaire de version et de suivi de projet<li>
+                        <li>Utilisez un gestionnaire de version et de suivi de projet</li>
                         <li>Organisez vos développements</li>
                         <li>Automatisez vos livraisons et jouez les souvent</li>
                         <li>Automatisez et normalisez la configuration de vos serveurs</li>
