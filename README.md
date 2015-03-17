@@ -3,7 +3,7 @@
 
 Afup - PHP Tour Nantes 2012
 
-http://ternel.net/camarchechezmoi
+http://jolicode.github.io/ca-marche-chez-moi
 
 
 
